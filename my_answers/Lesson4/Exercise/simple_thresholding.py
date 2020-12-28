@@ -1,5 +1,16 @@
-# TODO: Apply the above three thresholding methods to another image. Which has performed better? - You may need to fine tune Hyperparameters
+import cv2
+import numpy as np
+import skimage
+import matplotlib.pyplot as plt
+from   skimage.filters import threshold_local
 
+def show_image(image, cmap = None, fig_size = (10, 10)):
+    fig, ax = plt.subplots(figsize=fig_size)
+    ax.imshow(image, cmap = cmap)
+    ax.axis('off')
+    plt.show()
+
+    
 image = cv2.imread('../img/opencv_logo.png')
 gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 blurred = cv2.GaussianBlur(gray, (7, 7), 0) 
@@ -15,7 +26,7 @@ show_image(blurred, cmap='gray')
 show_image(thresh, cmap = 'gray')
 
 # finally, we can visualize only the masked regions in the image
-bitwise_output = cv2.bitwise_and(image, image, mask=threshInv)
+bitwise_output = cv2.bitwise_and(image, image, mask=thresh)
 show_image(np.flip(image, axis = 2))
 show_image(np.flip(bitwise_output, axis = 2))
 

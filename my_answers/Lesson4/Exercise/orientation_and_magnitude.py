@@ -1,4 +1,16 @@
-# TODO: Load the seal image and calculate the gradient orientation and magnitude of the image at pixel 100, 100
+import cv2
+import numpy as np
+import skimage
+import matplotlib.pyplot as plt
+
+def show_image(image, cmap = None, fig_size = (10, 10)):
+    fig, ax = plt.subplots(figsize=fig_size)
+    ax.imshow(image, cmap = cmap)
+    ax.axis('off')
+    plt.show()
+
+
+
 img = cv2.imread('../img/seal.png')
 show_image(img)
 # solve exercise
